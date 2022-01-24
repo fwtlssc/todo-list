@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <div id="main-content"></div>
+    
+    <div id="main-navbar-container"></div>
+    <div class="spacer-md"></div>
+    <div id="todo-list-section-container"></div>
+    <div id="modals-container"></div>
+    <div class="spacer-md"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", function(){
+            $("#main-navbar-container").load("../main-components/main-navbar.html");
+            $("#todo-list-section-container").load("./todo-list-section.html");
+            $("#modals-container").load("../components/modals.html");
+        });
+    </script>
+</body>
+</html>

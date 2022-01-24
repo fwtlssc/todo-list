@@ -1,0 +1,6 @@
+
+
+@mixin outline_active($width: 5px, $color: $mostly_pure_blue){
+    outline: $width solid $color;
+    outline-offset: -$width;
+}

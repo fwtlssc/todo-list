@@ -1,0 +1,137 @@
+
+
+  <section id="todo-list-section">
+    <div class="todos-container">
+        <div class="options">
+            <div class="option-container modal-show-option add-item-option">
+                <span>Add item</span>
+                &nbsp;
+                <i class="bi bi-plus-circle"></i>
+            </div>
+            <div class="option-container modal-show-option">
+                <i class="bi bi-arrow-clockwise"></i>
+            </div>
+        </div>
+    <div class="single-priority-section">
+        <div class="priority-container">
+            <span>#1</span>
+        </div>
+        <ul class="priority-todocards-list">
+            <li class="todo-card active">
+                <div class="card-body">
+                    <div class="col-1">
+                        <input type="checkbox" name="task" checked>
+                        <label class="task-label task-done">Write math article</label>
+                    </div>
+                    <div class="col-2">
+                        <div class="delete-button-container">
+                            <button class="btn-delete btn-icon">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            <div class="delete-tool-tip opacity-0">
+                                <p>Press again to delete task</p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-3">
+                            <p class="date">Monday 3/2021</p>
+                        </div>
+                        <div class="col-4">
+                        <p class="priority">Priority: 1</p>
+                        </div>
+                </div>
+            </li>
+            <li class="todo-card">
+                <div class="card-body">
+                    <div class="col-1">
+                        <input type="checkbox" name="task">
+                        <label class="task-label">Do Sports</label>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn-delete btn-icon">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                        <div class="col-3">
+                            <p class="date">Monday 3/2021</p>
+                        </div>
+                        <div class="col-4">
+                        <p class="priority">Priority: 1</p>
+                        </div>
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="single-priority-section">
+        <div class="priority-container">
+            <span>#5</span>
+        </div>
+        <ul class="priority-todocards-list">
+            <li class="todo-card">
+                <div class="card-body">
+                    <div class="col-1">
+                        <input type="checkbox" name="task">
+                        <label class="task-label">Do the dishes and clean the floor
+                            then rearrange dishes</label>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn-delete btn-icon">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                        <div class="col-3">
+                            <p class="date">Tuesday 3/2021</p>
+                        </div>
+                        <div class="col-4">
+                        <p class="priority">Priority: 5</p>
+                        </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    
+    </div>
+    <div class="floating-container">
+        <div class="description-card">
+            <div class="card-header">
+                <h2>Description</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="task-title">Task</label>
+                    <textarea name="task" class="task" id="task-title" rows="1"
+                placeholder="Enter task">Write math article</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <textarea name="description" class="description" id="task-description" rows="1"
+                placeholder="Enter description">I should write an article on how to conclude the formulas that reside in the page 304 in the calculus book.The last class i took with Miss Julie should help me with the homework.</textarea>
+                </div>
+
+                <div class="form-group row-option">
+                    <label for="task-priority">Priority</label>
+                    <input type="number" name="priority" id="task-priority" min="1" max="99" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="task-duedate">Due date</label>
+                    <input type="date" name="duedate" id="task-duedate">
+                </div>
+
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox">
+                        <label for="">Use Euclidean algorithm</label>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <label for="">Use the square of the sum of two numbers identity</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

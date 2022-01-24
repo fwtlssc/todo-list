@@ -1,0 +1,51 @@
+
+
+input[type=checkbox]{
+    appearance: none;
+    border: 1px solid rgba(0,0,0,.25);
+    border-radius: 0.25em;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-top: 0.5rem;
+    &:checked{
+        border-color: #0d6efd;
+        background-color: #0d6efd;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+    }
+    &:focus{
+        box-shadow: 0 0 0 0.1rem rgb(13 110 253 / 25%);
+    }
+}
+
+textarea{
+    color: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    &::placeholder{
+        color: rgba(0,0,0,0.25);
+    }
+}
+
+input{
+    color: inherit;
+    font-family: inherit;
+    &::placeholder{
+        color: rgba(0,0,0,0.25);
+    }
+}
+
+select{
+    color: inherit;
+    font-family: inherit;
+}
+
+input[type=number]{
+    padding: 0 1rem 0 0.5rem;
+    width: 65px;
+    border: 1px solid #fff;
+}

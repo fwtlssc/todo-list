@@ -1,0 +1,83 @@
+
+
+.floating-container{
+    order: 1;
+    max-width: 100%;
+    transition: all 1s linear 0s;
+    position: relative;
+    input{
+        @extend .transparent-input;
+    }
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        &.row-option{
+            flex-direction: row;
+            gap: 3rem;
+        }
+    }
+    @media (max-width: $lg){
+        position: static;
+        margin-top: 3rem;
+        .description-card{
+            width: 100%;
+        }
+    }
+}
+
+#todo-list-section{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0 5rem;
+    @media (max-width: $lg){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 5rem;
+    }
+    .todos-container{
+        width: 40%;
+        margin-left: 7rem;
+        @media (max-width: $xl){
+            width: 40%;
+        }
+        @media (max-width: $lg){
+            width: 70%;
+            margin-left: 0;
+        }
+        .options{
+            display: flex;
+            .option-container{
+                height: auto;
+                font-size: 2.5rem;
+                &.add-item-option{
+                    flex-grow: 1;
+                    background-color: $dark_green;
+                    span{
+                        &::after{
+                            content: "\00a0";
+                        }
+                    }
+                    &:hover{
+                        background-color: #446600;
+                    }
+                }
+            }
+        }
+    }
+    .floating-container{
+        @media (max-width: $lg){
+            align-self: stretch;
+        }
+    }
+}
+
+#add-todo-option{
+    .col-end{
+        display: flex;
+        justify-content: flex-end;
+    }
+   
+}

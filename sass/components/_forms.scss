@@ -1,0 +1,28 @@
+
+.lines-textarea{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    
+    background-image: -webkit-linear-gradient(left, transparent 10px, transparent 10px), -webkit-linear-gradient(right, transparent 10px, transparent 10px), -webkit-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+    background-image: -moz-linear-gradient(left, transparent 10px, transparent 10px), -moz-linear-gradient(right, transparent 10px, transparent 10px), -moz-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+    background-image: -ms-linear-gradient(left, transparent 10px, transparent 10px), -ms-linear-gradient(right, transparent 10px, transparent 10px), -ms-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+    background-image: -o-linear-gradient(left, transparent 10px, transparent 10px), -o-linear-gradient(right, transparent 10px, transparent 10px), -o-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+    background-image: linear-gradient(left, transparent 10px, transparent 10px), linear-gradient(right, transparent 10px, transparent 10px), linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+    background-size: 100% 100%, 100% 100%, 100% 31px;
+    line-height: 31px;
+}
+
+.transparent-input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    &::placeholder{
+        color: rgba(0,0,0,0.25);
+    }
+    &:focus{
+        border-bottom-color: $strong_cyan;
+    }
+}

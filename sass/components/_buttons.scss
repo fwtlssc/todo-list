@@ -1,0 +1,45 @@
+
+
+.btn{
+    border: none;
+    border-radius: 0.25rem;
+    padding: 1rem 1.3rem;
+}
+
+.btn-delete{
+    @extend .btn;
+    background-color: $strong_red;
+    &:hover{
+        background-color: $strong_red_hover;
+    }
+}
+
+.btn-option{
+    @extend .btn;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+}
+
+.btn-option-red{
+    @extend .btn-option;
+    background-color: $strong_red;
+    &:hover{
+        background-color: $strong_red_hover;
+    }
+}
+
+.btn-option-blue{
+    @extend .btn-option;
+    background-color: $strong_cyan;
+    &:hover{
+        background-color: #0288aa;
+    }
+}
+
+.btn-option-green{
+    @extend .btn-option;
+    background-color: $dark_moderate_green;
+    &:hover{
+        background-color: $dark_moderate_green_hover;
+    }
+}

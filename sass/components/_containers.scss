@@ -1,0 +1,257 @@
+
+.option-container{
+    @extend .center;
+    padding: 1.5rem 2rem;
+    background-color: $dark_moderate_green;
+    font-size: 3rem;
+    height: 70px;
+    &.active{
+        @include outline_active;
+    }
+    &:hover{
+        background-color: #5d9443;
+        cursor: pointer;
+    }
+}
+
+.single-priority-section{
+    .priority-container{
+        @extend .center;
+        padding: 0.25rem;
+        background-color: $light_grey;
+        &:hover{
+            background-color: $light_grey_hover;
+        }
+        cursor: pointer;
+    }
+    .priority-todocards-list{
+        transition: max-height 0.5s;
+    }
+}
+
+.todo-card{
+    .card-body{
+        padding: 1.5rem 1.5rem 1rem;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-template-columns: 1fr auto;
+        row-gap: 1.6rem;
+        background-color: $soft_brown;
+        cursor: pointer;
+        .col-1{
+            overflow: auto;
+        }
+        .col-2, .col-4{
+            justify-self: center;
+        }
+        .delete-button-container{
+            position: relative;
+            .delete-tool-tip{
+                position: absolute;
+                width: max-content;
+                border: none;
+                z-index: 3;
+                top:20%;
+                left: 110%;
+                padding: 0.5rem 1rem;
+                text-align: center;
+                background-color: rgba(0,0,0,0.7);
+                border-radius: 0 0.25rem 0.25rem 0.25rem;
+                font-size: 1.5rem;
+                transition: opacity 0.25s linear;
+                cursor: auto;
+                &::after{
+                    content: " ";
+                    position: absolute;
+                    top: 50%;
+                    right: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent rgba(0,0,0,0.7) transparent transparent;
+                }
+            }
+        }
+        .task-label{
+            margin-left: 1rem;
+            overflow-wrap: break-word;
+        }
+        .task-done{
+            text-decoration: line-through;
+        }
+        .date{
+            font-size: 1.5rem;
+            margin-left: 3.5rem;
+        }
+        .priority{
+            font-size: 1.5rem;
+        }
+        &:hover{
+            background-color: $soft_brown_hover;
+        }
+    }
+    &.active{
+        @include outline_active;
+    }
+}
+
+.option-card-container{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    transition: background-color 10s;
+    @extend .animation-fadeIn;
+    .options-card{
+        max-height: 80%;
+        display: flex;
+        flex-direction: column;
+        ::-webkit-scrollbar {
+            width: 20px;
+          }
+          
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+          }
+          
+        ::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+            border: 6px solid transparent;
+            background-clip: content-box;
+          }
+          
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #a8bbbf;
+        }
+        .card-header{
+            border-radius: 1.5rem 1.5rem 0 0;
+            text-align: center;
+            border-color: $strong_red;
+            background-color: $strong_red;
+            padding: 1rem;
+            .label{
+                &::after{
+                    content: " ";
+                }
+            }
+        }
+        .card-body{
+            overflow: auto;
+            flex-grow: 1;
+            background-color: $dark_moderate_green;
+            textarea{
+                @extend .lines-textarea;
+            }
+            input{
+                @extend .transparent-input;
+           }
+            
+            .single-option, .option{
+                padding: 1.25rem 1.5rem;
+                border-bottom: 1px solid #fff;
+            }
+            .single-option{
+                display: block;
+                .form-group{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+            }
+            .option{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+           
+            select{
+                background-color: $soft_orange;
+                appearance: none;
+                padding: 0.25rem 1rem;
+                border: none;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right 0.75rem center;
+                background-size: 2rem;
+            }
+            button{
+                justify-self: center;
+            }
+
+            .buttons{
+                padding: 1.25rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1.6rem;
+            }
+        }
+    }
+    .options-card.confirmation-modal{
+        .card-header{
+            background-color: $dark_moderate_green;
+        }
+        .card-body{
+            background-color: $strong_cyan;
+        }
+    }
+}
+
+
+.description-card{
+    background-color: $soft_brown;
+    width: 450px;
+    position: sticky;
+    top:5%;
+    overflow: hidden;
+    transition: all 0.5s;
+    max-width: 100%;
+    margin-left: auto;
+    opacity: 100%;
+    &.hide{
+        max-width: 0;
+        opacity: 0;
+    }
+    .card-header{
+        text-align: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid #fff;
+        h2{
+            font-size: 3rem;
+            font-style: italic;
+        }
+    }
+    .card-body{
+        padding: 1.5rem 2rem 5rem;
+        
+        .form-group{
+            margin-top: 1.5rem;
+            label{
+                font-weight: bold;
+                color: #000;
+            }
+        }
+        .description{
+            font-size: 1.8rem;
+        }
+        textarea{
+            @extend .lines-textarea;
+        }
+        .checklist{
+            margin-top: 3rem;
+            border-top: 1px solid #fff;
+            li{
+                margin-top: 1.25rem;
+            }
+        }
+    }
+}
+
+

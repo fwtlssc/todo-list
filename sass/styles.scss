@@ -1,0 +1,31 @@
+@import url(../css/reset.css);
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+// ||variables
+@import "./variables/breakpoints";
+@import "./variables/colors";
+
+// ||layouts
+@import "./layouts/forms";
+@import "./layouts/general";
+
+// ||utilities
+@import "./utilities/animations";
+@import "./utilities/backgrounds";
+@import "./utilities/borders";
+@import "./utilities/dimensions";
+@import "./utilities/display";
+@import "./utilities/text";
+
+// ||components
+@import "./components/buttons";
+@import "./components/containers";
+@import "./components/forms";
+@import "./components/spacers";
+
+// ||main components
+@import "./main-components/main-navbar.scss";
+
+// ||pages
+@import "./pages/home.scss";
+

@@ -1,0 +1,37 @@
+@keyframes fadeIn{
+    from{
+        opacity: 0%;
+    }
+    to{
+        opacity: 100%;
+    }
+}
+
+@keyframes fadeOut{
+    from{
+        opacity: 100%;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.animation-fadeIn{
+    animation: fadeIn 0.5s;
+}
+
+.animation-fadeOut{
+    animation: fadeOut 0.5s;
+}
+
+@keyframes loadingSpinner{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.animation-loadingSpinner{
+    animation: loadingSpinner 1s linear infinite;
+}
