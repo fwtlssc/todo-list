@@ -148,8 +148,12 @@ export let todoView = (function(){
         list.classList.toggle("collapse");
         if(list.style['max-height'] == "0px"){
             list.style['max-height'] = `${list.scrollHeight}px`;
+            list.addEventListener("transitionend", ()=> {
+                list.classList.remove("overflow-hidden");
+            }, {once : true});
         }else{
             list.style['max-height'] = "0px";
+            list.classList.add("overflow-hidden");
         }
     }
 
