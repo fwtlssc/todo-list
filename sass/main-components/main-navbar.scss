@@ -8,7 +8,7 @@
         .projects-container{
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(5,1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             grid-template-rows: 1fr;
             grid-auto-rows: 0;
             overflow:hidden;
@@ -16,15 +16,6 @@
             backdrop-filter: blur(2px);
             position: absolute;
             z-index: 1;
-            @media (max-width: $xl){
-                grid-template-columns: repeat(4,1fr);
-            }
-            @media (max-width: $lg){
-                grid-template-columns: repeat(3,1fr);
-            }
-            @media (max-width: $md){
-                grid-template-columns: repeat(2,1fr);
-            }
             &.expanded{
                 grid-auto-rows: auto;
                 @include outline_active(2px,#fff);
