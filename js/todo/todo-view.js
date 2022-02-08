@@ -107,7 +107,12 @@ export let todoView = (function(){
             if(!activeTodoCard){
                 setActiveTodo(todoCard);
             }
-            todoCard.card.addEventListener("click", () => {setActiveTodo(todoCard)} );
+            todoCard.card.addEventListener("click", (e) => { 
+                if(e.target.closest('.btn-delete')){
+                    return;
+                }
+                setActiveTodo(todoCard) 
+            });
             list.append(todoCard.card)
         });
         return section;
@@ -125,6 +130,9 @@ export let todoView = (function(){
     }
 
     function setActiveTodo(todoCard){
+        if(activeTodoCard === todoCard){
+            return;
+        }
         if(activeTodoCard){
             activeTodoCard.card.classList.remove("active");
         }
@@ -296,6 +304,7 @@ class TodoCard{
         tooltipText.textContent = "Press again to delete task";
         this.tooltip.append(tooltipText);
         this.deleteButtonContainer.append(this.tooltip);
+       
     }
     
     hideDeleteTooltip(){
