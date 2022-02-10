@@ -29,6 +29,8 @@
     display: flex;
     justify-content: space-between;
     padding: 0 0 0 5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     @media (max-width: $lg){
         display: flex;
         flex-direction: column;
