@@ -1,26 +1,31 @@
-import { Modal } from "./modal";
-import { helper } from "../../helpers";
+import Modal from "./modal";
+import helper from "../../helpers";
 import app from "../../app";
-import { DeleteConfirmationModal } from "./delete-confirmation-modal";
+import DeleteConfirmationModal from "./delete-confirmation-modal";
 
-export class ProjectSettingsModal extends Modal{
-    constructor(){
+export default class ProjectSettingsModal extends Modal {
+    constructor() {
         super();
         const activeProject = app.getProjectById(app.activeProjectId);
-        this.createTitle("Settings", ["bi","bi-gear-fill"]);
+        this.createTitle("Settings", ["bi", "bi-gear-fill"]);
         let option = document.createElement("div");
         option.classList.add("option");
 
         let col1 = document.createElement("label");
-        col1.setAttribute("for","project-title");
+        col1.setAttribute("for", "project-title");
         col1.textContent = "Project Title";
         option.append(col1);
         let col2 = document.createElement("form");
-        col2.setAttribute("id","form-add-project")
+        col2.setAttribute("id", "form-add-project");
         const input = document.createElement("input");
-        helper.setAttributes(input, {"type":"text", "name":"title", "id":"project-title",
-                                    "placeholder":"Enter project title", "required":"",
-                                    "value":activeProject.getTitle()})
+        helper.setAttributes(input, {
+            type: "text",
+            name: "title",
+            id: "project-title",
+            placeholder: "Enter project title",
+            required: "",
+            value: activeProject.getTitle(),
+        });
         col2.append(input);
         option.append(col2);
         this.form = col2;
@@ -29,33 +34,40 @@ export class ProjectSettingsModal extends Modal{
         option = document.createElement("div");
         option.classList.add("option");
         col1 = document.createElement("label");
-        col1.setAttribute("for","project-order");
+        col1.setAttribute("for", "project-order");
         col1.textContent = "Place Before";
         option.append(col1);
-        
+
         col2 = document.createElement("select");
-        helper.setAttributes(col2, {"form":"form-add-project", "name":"order", "id":"project-order",
-                                    "required":""});
-        const defaultOption = document.createElement("option");
-        helper.setAttributes(defaultOption, {"value":app.projectsOrder.length + 1})
-        if(activeProject.getId() == app.projectsOrder[app.projectsOrder.length-1]){
-            defaultOption.setAttribute("selected", "");
-        }
-        defaultOption.textContent = "Last Project";
-        col2.append(defaultOption);
-        app.projectsOrder.forEach( (order , index) => {
-            if(order == activeProject.getId()){
+        helper.setAttributes(col2, {
+            form: "form-add-project",
+            name: "order",
+            id: "project-order",
+            required: "",
+        });
+
+        app.projectsOrder.forEach((order, index) => {
+            if (order === activeProject.getId()) {
                 return;
             }
             const project = app.getProjectById(order);
-            const option = document.createElement("option");
-            option.setAttribute("value", index+1);
-            if(index > 0 && app.projectsOrder[index-1] == activeProject.getId()){
-                option.setAttribute("selected", "");
+            const orderOption = document.createElement("option");
+            orderOption.setAttribute("value", index + 1);
+            if (index > 0 && app.projectsOrder[index - 1] === activeProject.getId()) {
+                orderOption.setAttribute("selected", "");
             }
-            option.textContent = project.getTitle();
-            col2.append(option);
+            orderOption.textContent = project.getTitle();
+            col2.append(orderOption);
         });
+        const defaultOption = document.createElement("option");
+        helper.setAttributes(defaultOption, {
+            value: app.projectsOrder.length + 1,
+        });
+        if (activeProject.getId() === app.projectsOrder[app.projectsOrder.length - 1]) {
+            defaultOption.setAttribute("selected", "");
+        }
+        defaultOption.textContent = "As Last Project";
+        col2.append(defaultOption);
         option.append(col2);
         this.modalBody.insertBefore(option, this.modalBody.lastElementChild);
 
@@ -66,11 +78,13 @@ export class ProjectSettingsModal extends Modal{
         option.append(col1);
 
         col2 = document.createElement("button");
-        col2.classList.add(...["btn-icon", "btn-delete"])
+        col2.classList.add(...["btn-icon", "btn-delete"]);
         const icon = document.createElement("i");
         icon.classList.add(...["bi", "bi-trash"]);
         col2.append(icon);
-        col2.addEventListener("click",  () => {new DeleteConfirmationModal(activeProject).showModal();} );
+        col2.addEventListener("click", () => {
+            new DeleteConfirmationModal(activeProject).showModal();
+        });
         option.append(col2);
         this.modalBody.insertBefore(option, this.modalBody.lastElementChild);
 
@@ -81,7 +95,7 @@ export class ProjectSettingsModal extends Modal{
         changeButton.addEventListener("click", this.changeProject.bind(this));
     }
 
-    changeProject(){
+    changeProject() {
         const activeProject = app.getProjectById(app.activeProjectId);
         const title = this.form.title.value;
         const order = this.form.order.value;
@@ -89,6 +103,4 @@ export class ProjectSettingsModal extends Modal{
         app.setProjectOrder(activeProject.getId(), order);
         this.closeModal();
     }
-
-    
 }

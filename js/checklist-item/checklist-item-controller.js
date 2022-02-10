@@ -1,49 +1,66 @@
-import app from "../app";
-import { appStorage } from "../storage";
+import idGenerator from "../generators/id-generator";
+import appStorage from "../storage";
 
-export class ChecklistItem{
-
+export default class ChecklistItem {
     #id;
+
     #todoId;
+
     #content;
+
     #done;
 
-    constructor(todoId, content, id, done){
+    constructor(todoId, content, id, done) {
         this.#todoId = todoId;
         this.#content = content;
-        this.#id = id?? app.generateChecklistItemId();
-        this.#done = done??false;
+        this.#id = id ?? idGenerator.generateChecklistItemId();
+        this.#done = done ?? false;
         this.saveToStorage();
     }
 
-    toObject(){
-        return {id: this.#id, todoId: this.#todoId, content: this.#content, done: this.#done};
+    toObject() {
+        return {
+            id: this.#id,
+            todoId: this.#todoId,
+            content: this.#content,
+            done: this.#done,
+        };
     }
 
-    getId(){
+    getId() {
         return this.#id;
     }
 
-    getContent(){
+    getContent() {
         return this.#content;
     }
 
-    setContent(content){
+    setContent(content) {
         this.#content = content;
         this.saveToStorage();
     }
 
-    isDone(){
+    isDone() {
         return this.#done;
     }
 
-    setDone(done){
+    setDone(done) {
         this.#done = done;
         this.saveToStorage();
     }
 
-    saveToStorage(){
+    /*
+    loadFromStorage(id) {
+        const object = appStorage.loadChecklistItem(id);
+        return new ChecklistItem(
+            object.todoId,
+            object.content,
+            object.id,
+            object.done,
+        );
+    }
+    */
+    saveToStorage() {
         appStorage.storeChecklistItem(this);
     }
-
 }

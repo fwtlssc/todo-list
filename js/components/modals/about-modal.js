@@ -1,10 +1,9 @@
+import Modal from "./modal";
 
-import { Modal } from "./modal";
-
-export class AboutModal extends Modal{
-    constructor(){
+export default class AboutModal extends Modal {
+    constructor() {
         super();
-        this.createTitle("About", ["bi","bi-info-circle-fill"]);
+        this.createTitle("About", ["bi", "bi-info-circle-fill"]);
         let option = document.createElement("div");
         option.classList.add("option");
 
@@ -13,7 +12,7 @@ export class AboutModal extends Modal{
         option.append(col1);
         let col2 = document.createElement("p");
         col2.textContent = "Mohammad Termanini";
-        option.append(col2)
+        option.append(col2);
         this.modalBody.insertBefore(option, this.modalBody.lastElementChild);
 
         option = document.createElement("div");
@@ -23,7 +22,7 @@ export class AboutModal extends Modal{
         option.append(col1);
         col2 = document.createElement("p");
         col2.textContent = "mohtermanini@gmail.com";
-        option.append(col2)
+        option.append(col2);
         this.modalBody.insertBefore(option, this.modalBody.lastElementChild);
     }
 }

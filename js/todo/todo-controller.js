@@ -1,31 +1,38 @@
+//  import { ChecklistItem } from "../checklist-item/checklist-item-controller";
 import PubSub from "pubsub-js";
-import app from "../app";
-import { appStorage } from "../storage";
+import idGenerator from "../generators/id-generator";
+import todoStorage from "./todo-storage";
 
-export class Todo{
-
+export default class Todo {
     #id;
+
     #projectId;
+
     #title;
+
     #description;
+
     #done;
+
     #dueDate;
+
     #priority;
+
     #checklist;
 
-    constructor(projectId, title, description, dueDate, priority, id, done, checklist){
+    constructor(projectId, title, description, dueDate, priority, id, done, checklist) {
         this.#projectId = projectId;
         this.#title = title;
         this.#description = description;
         this.#dueDate = dueDate;
         this.#priority = priority;
-        this.#id = id?? app.generateTodoId();
-        this.#done = done??false;
-        this.#checklist = checklist??[];
+        this.#id = id ?? idGenerator.generateTodoId();
+        this.#done = done ?? false;
+        this.#checklist = checklist ?? [];
         this.saveToStorage();
     }
 
-    toObject(){
+    toObject() {
         return {
             id: this.#id,
             projectId: this.#projectId,
@@ -34,90 +41,108 @@ export class Todo{
             done: this.#done,
             dueDate: this.#dueDate,
             priority: this.#priority,
-            checklist: this.#checklist
+            checklist: this.#checklist,
         };
     }
 
-    getId(){
+    static createFromObject(object) {
+        return new this(
+            object.projectId,
+            object.title,
+            object.description,
+            object.dueDate,
+            object.priority,
+            object.id,
+            object.done,
+            object.checklist,
+        );
+    }
+
+    static getTodoById(id) {
+        return this.createFromObject(todoStorage.loadFromStorage(id));
+    }
+
+    getId() {
         return this.#id;
     }
 
-    getProjectId(){
+    getProjectId() {
         return this.#projectId;
     }
 
-    getTitle(){
+    getTitle() {
         return this.#title;
     }
 
-    setTitle(title){
+    setTitle(title) {
         this.#title = title;
         this.saveToStorage();
-        PubSub.publish("todoTitleChange",{id: this.#id});
+        PubSub.publish("todoTitleChange", { id: this.#id });
     }
 
-    getDescription(){
+    getDescription() {
         return this.#description;
     }
 
-    setDescription(description){
+    setDescription(description) {
         this.#description = description;
         this.saveToStorage();
     }
 
-    isDone(){
+    isDone() {
         return this.#done;
     }
 
-    setDone(done){
+    setDone(done) {
         this.#done = done;
         this.saveToStorage();
-        PubSub.publish("todoDoneChange",{id: this.#id});
+        PubSub.publish("todoDoneChange", { id: this.#id });
     }
 
-    getDueDate(){
+    getDueDate() {
         return this.#dueDate;
     }
 
-    setDueDate(dueDate){
+    setDueDate(dueDate) {
         this.#dueDate = new Date(dueDate);
         this.saveToStorage();
-        PubSub.publish("todoDueDateChange",{id: this.#id});
+        PubSub.publish("todoDueDateChange", { id: this.#id });
     }
 
-    getPriority(){
+    getPriority() {
         return this.#priority;
     }
 
-    setPriority(priority){
+    setPriority(priority) {
         this.#priority = priority;
         this.saveToStorage();
         PubSub.publish("todoPriorityChange");
     }
 
-    addChecklistItem(checklistItem){
+    addChecklistItem(checklistItem) {
         this.#checklist.push(checklistItem.getId());
         this.saveToStorage();
     }
 
-    removeChecklistItem(checklistItemId){
-        let index = this.#checklist.indexOf(checklistItemId);
-        if(index>-1){
+    removeChecklistItem(checklistItemId) {
+        const index = this.#checklist.indexOf(checklistItemId);
+        if (index > -1) {
             this.#checklist.splice(index, 1);
             this.saveToStorage();
         }
     }
 
-    getChecklistItemById(id){
-        return appStorage.loadChecklistItem(id);
-    }
+    /*
+        getChecklistItemById(id) {
+            return ChecklistItem.loadFromStorage(id);
+        }
+*/
 
-    getChecklist(){
+    getChecklist() {
         return this.#checklist;
     }
 
-    saveToStorage(){
-        appStorage.storeTodo(this);
+    saveToStorage() {
+        todoStorage.saveToStorage(this);
     }
-
 }

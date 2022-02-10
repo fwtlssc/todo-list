@@ -1,32 +1,29 @@
-import { projectView } from "../project/project-view";
-import { AboutModal } from "./modals/about-modal";
-import { AddProjectModal } from "./modals/add-project-modal";
-import { ProjectSettingsModal } from "./modals/project-settings-modal";
+import projectView from "../project/project-view";
+import AboutModal from "./modals/about-modal";
+import AddProjectModal from "./modals/add-project-modal";
+import ProjectSettingsModal from "./modals/project-settings-modal";
 
-
-export let mainNav = (function(){
-
+export default (() => {
     let nav;
-    let addOption = _createOptionContainer(["bi","bi-plus-lg"]);
-    let expandOption = _createOptionContainer(["bi","bi-caret-down-fill"]);
-    let aboutOption = _createOptionContainer(["bi","bi-info-circle-fill"]);
-    let settingsOption = _createOptionContainer(["bi","bi-gear-fill"]);
+    const addOption = _createOptionContainer(["bi", "bi-plus-lg"]);
+    const expandOption = _createOptionContainer(["bi", "bi-caret-down-fill"]);
+    const aboutOption = _createOptionContainer(["bi", "bi-info-circle-fill"]);
+    const settingsOption = _createOptionContainer(["bi", "bi-gear-fill"]);
 
-    //bind events
-    addOption.addEventListener("click", () => { (new AddProjectModal()).showModal();} );
+    // bind events
+    addOption.addEventListener("click", () => { (new AddProjectModal()).showModal(); });
     expandOption.addEventListener("click", projectView.expandProjects);
-    aboutOption.addEventListener("click", () => { (new AboutModal()).showModal();} );
+    aboutOption.addEventListener("click", () => { (new AboutModal()).showModal(); });
     settingsOption.addEventListener("click", () => { (new ProjectSettingsModal()).showModal(); });
-    
 
-    function createMainNavbar(){
+    function createMainNavbar() {
         nav = document.createElement("nav");
         nav.setAttribute("id", "main-navbar");
         document.querySelector("#main-content").append(nav);
         this.render();
     }
 
-    function render(){
+    function render() {
         nav.append(addOption);
 
         const growContainer = document.createElement("div");
@@ -38,11 +35,11 @@ export let mainNav = (function(){
         nav.append(settingsOption);
     }
 
-    function _createOptionContainer(iconClasses){
-        let container = document.createElement("div");
+    function _createOptionContainer(iconClasses) {
+        const container = document.createElement("div");
         container.classList.add("option-container");
 
-        let icon = document.createElement("i");
+        const icon = document.createElement("i");
         icon.classList.add(...iconClasses);
         container.append(icon);
 
@@ -51,7 +48,6 @@ export let mainNav = (function(){
 
     return {
         createMainNavbar,
-        render
-    }
-
+        render,
+    };
 })();

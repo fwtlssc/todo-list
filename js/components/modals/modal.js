@@ -1,16 +1,19 @@
-
 import app from "../../app";
 
-export class Modal{
-
+export default class Modal {
     modal;
+
     modalHeader;
+
     modalBody;
+
     buttons;
+
     closeButton;
+
     form;
 
-    constructor(){
+    constructor() {
         this.modal = document.createElement("div");
         this.modal.classList.add("option-card-container");
 
@@ -32,17 +35,17 @@ export class Modal{
 
         this.closeButton = document.createElement("button");
         this.closeButton.textContent = "Close";
-        this.closeButton.classList.add(...["btn-option-red","btn-close"]);
+        this.closeButton.classList.add(...["btn-option-red", "btn-close"]);
         this.buttons.append(this.closeButton);
         this.bindEvents();
     }
 
-    bindEvents(){
+    bindEvents() {
         this.closeButton.addEventListener("click", this.closeModal.bind(this));
         this.modal.addEventListener("click", this.clickOnBackground.bind(this));
-    }  
+    }
 
-    createTitle(title, iconClasses){
+    createTitle(title, iconClasses) {
         const header = document.createElement("h2");
         this.modalHeader.append(header);
 
@@ -51,33 +54,31 @@ export class Modal{
         label.textContent = title;
         header.append(label);
 
-        if(iconClasses){
+        if (iconClasses) {
             const icon = document.createElement("i");
             icon.classList.add(...iconClasses);
             header.append(icon);
         }
     }
 
-    showModal(){
+    showModal() {
         document.body.append(this.modal);
         document.body.classList.add("modal-active");
         app.pushModal(this);
     }
 
-    closeModal(){
+    closeModal() {
         this.modal.classList.add("animation-fadeOut");
         this.modal.addEventListener("animationend", () => {
             this.modal.remove();
             document.body.classList.remove("modal-active");
             app.popModal();
         });
-        
     }
 
-    clickOnBackground(e){
-        if(e.target == this.modal){
+    clickOnBackground(e) {
+        if (e.target === this.modal) {
             this.closeModal();
         }
     }
-
 }

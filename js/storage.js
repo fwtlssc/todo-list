@@ -1,97 +1,66 @@
-import { Project } from "./project/project-controller";
-import app from "./app";
-import { Todo } from "./todo/todo-controller";
-import { ChecklistItem } from "./checklist-item/checklist-item-controller";
-
-export let appStorage = (function(){
-
-    function loadProjects(){
+export default (() => {
+    function loadProjects() {
         return JSON.parse(localStorage.getItem("projects")) || [];
     }
 
-    function storeProjects(){
-        localStorage.setItem("projects", JSON.stringify(app.projects));
+    function storeProjects(projects) {
+        localStorage.setItem("projects", JSON.stringify(projects));
     }
 
-    function loadProject(id){
-        let key = `project[${id}]`;
-        let object = JSON.parse(localStorage.getItem(key));
-        let project = new Project(
-            object.title,
-            object.id,
-            object.todos
-        );
-        return project;
+    function loadProject(id) {
+        const key = `project[${id}]`;
+        return JSON.parse(localStorage.getItem(key));
     }
 
-    function storeProject(project){
-        let key = `project[${project.getId()}]`;
+    function storeProject(project) {
+        const key = `project[${project.getId()}]`;
         localStorage.setItem(key, JSON.stringify(project.toObject()));
     }
 
-    function loadTodo(id){
-        let key = `todo[${id}]`;
-        let object = JSON.parse(localStorage.getItem(key));
-        let todo = new Todo(
-            object.projectId,
-            object.title,
-            object.description,
-            object.dueDate,
-            object.priority,
-            object.id,
-            object.done,
-            object.checklist
-        );
-        return todo;
+    function loadTodo(id) {
+        const key = `todo[${id}]`;
+        return JSON.parse(localStorage.getItem(key));
     }
 
-    function storeTodo(todo){
-        let key = `todo[${todo.getId()}]`;
+    function storeTodo(todo) {
+        const key = `todo[${todo.getId()}]`;
         localStorage.setItem(key, JSON.stringify(todo.toObject()));
     }
 
-
-    function storeChecklistItem(checklistItem){
-        let key = `checklistItem[${checklistItem.getId()}]`;
+    function storeChecklistItem(checklistItem) {
+        const key = `checklistItem[${checklistItem.getId()}]`;
         localStorage.setItem(key, JSON.stringify(checklistItem.toObject()));
     }
 
-    function loadChecklistItem(id){
-        let key = `checklistItem[${id}]`;
-        const object = JSON.parse(localStorage.getItem(key));
-        let checklistItem = new ChecklistItem(
-            object.todoId,
-            object.content,
-            object.id,
-            object.done
-        );
-        return checklistItem;
+    function loadChecklistItem(id) {
+        const key = `checklistItem[${id}]`;
+        return JSON.parse(localStorage.getItem(key));
     }
 
-    function storeProjectsOrder(){
-        localStorage.setItem("projectsOrder", JSON.stringify(app.projectsOrder));
+    function storeProjectsOrder(projectsOrder) {
+        localStorage.setItem("projectsOrder", JSON.stringify(projectsOrder));
     }
 
-    function loadProjectsOrder(){
+    function loadProjectsOrder() {
         return JSON.parse(localStorage.getItem("projectsOrder")) || [];
     }
 
-    function storeActiveProjectId(activeProjectId){
+    function storeActiveProjectId(activeProjectId) {
         localStorage.setItem("activeProjectId", JSON.stringify(activeProjectId));
     }
 
-    function loadActiveProjectId(){
+    function loadActiveProjectId() {
         return JSON.parse(localStorage.getItem("activeProjectId")) || -1;
     }
 
-    function loadLatestIds(){
+    function loadLatestIds() {
         return [JSON.parse(localStorage.getItem("projectLatestId") || 0),
-                JSON.parse(localStorage.getItem("todoLatestId")) || 0,
-                JSON.parse(localStorage.getItem("checklistItemLatestId")) || 0,
-                ];
+            JSON.parse(localStorage.getItem("todoLatestId")) || 0,
+            JSON.parse(localStorage.getItem("checklistItemLatestId")) || 0,
+        ];
     }
 
-    function storeLatestId(key, id){
+    function storeLatestId(key, id) {
         localStorage.setItem(key, JSON.stringify(id));
     }
 
@@ -109,7 +78,6 @@ export let appStorage = (function(){
         loadLatestIds,
         storeLatestId,
         storeActiveProjectId,
-        loadActiveProjectId
-    }
-
+        loadActiveProjectId,
+    };
 })();
