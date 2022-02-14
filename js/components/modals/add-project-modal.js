@@ -44,20 +44,22 @@ export default class AddProjectModal extends Modal {
             id: "project-order",
             required: "",
         });
-        const defaultOption = document.createElement("option");
-        helper.setAttributes(defaultOption, {
-            value: app.projectsOrder.length + 1,
-            selected: "",
-        });
-        defaultOption.textContent = "Last Project";
-        col2.append(defaultOption);
         app.projectsOrder.forEach((order, index) => {
             const project = app.getProjectById(order);
             const selectOption = document.createElement("option");
             selectOption.setAttribute("value", index + 1);
+            if (index === 0) {
+                selectOption.setAttribute("selected", "");
+            }
             selectOption.textContent = project.getTitle();
             col2.append(selectOption);
         });
+        const defaultOption = document.createElement("option");
+        helper.setAttributes(defaultOption, {
+            value: app.projectsOrder.length + 1,
+        });
+        defaultOption.textContent = "As Last Project";
+        col2.append(defaultOption);
         option.append(col2);
         this.modalBody.insertBefore(option, this.modalBody.lastElementChild);
 
